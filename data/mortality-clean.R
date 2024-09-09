@@ -1,6 +1,6 @@
-fx.mortality <- here::here("mortality.xlsx")
-tx.mort.weight <- here::here("mortality-weight.txt")
-tx.mort.mort   <- here::here("mortality.txt")
+fx.mortality <- here::here("data", "mortality.xlsx")
+tx.mort.weight <- here::here("data", "mortality-weight.txt")
+tx.mort.mort   <- here::here("data", "mortality.txt")
 
 ############# Weight
 
@@ -28,7 +28,7 @@ mort.raw[(!is.na(mort.raw[,1])) & mort.raw[,1] == 'qq jours après',1] <- NA
 
 mort.clean <- as.data.frame(do.call(rbind, lapply(unique(mort.raw[!is.na(mort.raw[,1]),1]), function(dd) { i <- which(mort.raw[,1] == dd); cbind(rep(dd, 4), c("3B", "6A", "10B", "12B"), t(mort.raw[i:(i+2), 3:6])) })))
 
-colnames(mort.clean) <- c("Date", "Line", "Hatched", "nonHateched", "Adults")
+colnames(mort.clean) <- c("Date", "Line", "Hatched", "nonHatched", "Adults")
 mort.clean$Date <- as.Date(as.numeric(mort.clean$Date), origin="1899-12-30")
 
 write.table(mort.clean, file=tx.mort.mort, row.names=FALSE, sep="\t", quote=FALSE)
