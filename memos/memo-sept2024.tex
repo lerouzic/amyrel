@@ -1,0 +1,68 @@
+\documentclass[10pt]{article}
+
+\usepackage{graphicx}
+\usepackage{verbatim}
+
+\title{Exploration of the Amyrel datasets}
+\author{Arnaud LE ROUZIC, Jean-Luc DA LAGE}
+
+\begin{document}
+
+\maketitle
+
+\section{Body weight}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../figures/weight-bxp}
+\end{center}
+
+Analysis of variance:
+
+\verbatiminput{../figures/weight-aov.txt}
+
+\section{Mortality}
+
+\subsection{Hatching rate}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../figures/mortality-hatched.pdf}
+\end{center}
+
+\verbatiminput{../figures/mortality-hatched.txt}
+
+\subsection{Larvae to adult survival}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../figures/mortality-surv.pdf}
+\end{center}
+
+\verbatiminput{../figures/mortality-surv.txt}
+
+\section{Competition}
+
+Population genetics model: 
+
+2-allele, 1-locus model ($w$ and $m$ alleles). $p = \mathrm{Freq}(ww) + \frac{1}{2}\mathrm{Freq}(wm)$ is the frequency of $w$ alleles. We assume no dominance; $s$ is the fitness penalty for the $mm$ genotype compared to the wild-type $ww$ genotype. From standard theory: 
+
+$$\Delta p = p \frac{1-\frac{s}{2}(1-p)}{1-s(1-p)}$$. 
+
+The model was fit to the data by maximum likelihood, 2 parameters to estimate ($s$ and $p_0$). The number observed $w$ alleles was expected to follow a binomial distribution, with probability $p_t$ obtained from the expected deterministic dynamics determined by parameters ($s$ and $p_0$) ( = no genetic drift). The model was fit independently on all time series (3 replicates for 2 crosses and 3 media). 
+
+\begin{center}
+    \includegraphics[width=\textwidth]{../figures/compet-timeseries.pdf}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{../figures/compet-param.pdf}
+\end{center}
+
+There was a slight excess of samples in non-Hardy-Weinberg frequencies (36 / 133 for a p-value threshold at 0.05); estimates were sensibly the same when non-Hardy-Weinberg samples were removed.
+
+\begin{minipage}{\linewidth}\verbatiminput{../figures/compet-model.txt}\end{minipage}
+
+\vspace{0.5cm}
+
+When fitted to all time series simultaneously, there was a significant bias in favor of the $w$ allele (about $\sim 2\%$ fitness difference between $ww$ and $mm$). 
+
+
+\end{document}
