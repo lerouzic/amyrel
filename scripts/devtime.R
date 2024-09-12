@@ -1,14 +1,12 @@
 source(here::here("scripts", "colors.R"))
 
-
 fig.dir <- here::here("figures")
 
 tx.devtime <- here::here("data", "devtime.txt")
 
-
 data <- read.table(tx.devtime, header=TRUE, sep="\t", colClasses=c("factor", "factor", "numeric"))
 data$Line <- factor(data$Line, levels=names(col.line))
-data$Rep  <- factor(data$Rep,  levels=gtools::mixedsort)
+data$Rep  <- factor(data$Rep,  levels=gtools::mixedsort(levels(data$Rep)))
 
 data.size <- sapply(split(data, f=interaction(data$Rep, data$Line)), FUN=nrow)
 barplot(data.size, col=col.line[sapply(strsplit(names(data.size), split="\\."), "[", 2)], xaxt="n", ylab="Number of observations")
