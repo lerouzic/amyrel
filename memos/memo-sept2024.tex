@@ -64,5 +64,38 @@ There was a slight excess of samples in non-Hardy-Weinberg frequencies (36 / 133
 
 When fitted to all time series simultaneously, there was a significant bias in favor of the $w$ allele (about $\sim 2\%$ fitness difference between $ww$ and $mm$). 
 
+\section{Development time}
+
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../figures/devtime-bxpall.pdf} \\
+    \includegraphics[width=0.9\textwidth]{../figures/devtime-bxpline.pdf} \\
+    \includegraphics[width=0.9\textwidth]{../figures/devtime-bxprep.pdf}    
+\end{center}
+
+\begin{minipage}{\linewidth}\verbatiminput{../figures/devtime-model.txt}\end{minipage}
+
+\section{Lifespan}
+
+\subsection{Linear models}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{../figures/lifespan-ts.pdf}
+\end{center}
+\begin{center}
+    \includegraphics[width=\textwidth]{../figures/lifespan-dist.pdf}
+\end{center}
+
+\begin{minipage}{\linewidth}\verbatiminput{../figures/lifespan-model.txt}\end{minipage}
+
+\subsection{Proportional hazards (Cox) model}
+
+\begin{center}
+    \includegraphics[width=\textwidth]{../figures/lifespan-tscox.pdf}
+\end{center}
+
+\begin{minipage}{\linewidth}\verbatiminput{../figures/lifespan-modelcox.txt}\end{minipage}
+
+
+
 
 \end{document}

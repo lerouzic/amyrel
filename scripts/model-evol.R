@@ -45,6 +45,7 @@ model1.minusloglik <- function(p0, h, s, Generation, w.w, w.m, m.m, N, distrib="
 
 
 model1 <- function(df, dominance=FALSE, confint=TRUE, ...) {
+	library(bbmle)
     mll <- function(p0, h, s) model1.minusloglik(p0, h, s, Generation, w.w=w.w, w.m=w.m, m.m=m.m, N=N, ...)
     p0.guess <- mean(((df$w.w + 0.5*df$w.m)/(df$w.w + df$w.m + df$m.m))[df$Generation == min(df$Generation)])
     

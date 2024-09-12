@@ -1,5 +1,5 @@
-fx.compet <- here::here("compet.xlsx")
-tx.compet <- here::here("compet.txt")
+fx.compet <- here::here("data", "compet.xlsx")
+tx.compet <- here::here("data", "compet.txt")
 
 cols <- c(
     'Génération' = "Generation",
