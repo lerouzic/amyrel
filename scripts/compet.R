@@ -32,13 +32,14 @@ dev.off()
 # Not very clean: the for loops for plotting also perform model fitting
 df.models <- NULL
 
+medium.names <- c(A="S", C="C", G="G")
 
-pdf(file.path(fig.dir, "compet-timeseries.pdf"),  width=8, height=6, pointsize=8)
-    layout(rbind(1:2, c(3,0)))
-    par(cex=1, mar=c(4, 4, 3, 1))
+for (mm in levels(data$Medium)) {
+
+    pdf(file.path(fig.dir, paste0("compet-timeseries-", medium.names[mm], ".pdf")),  width=4, height=3, pointsize=8)
+        par(cex=1, mar=c(4, 4, 3, 1))
     
-    for (mm in levels(data$Medium)) {
-        plot(NULL, xlim=range(data$Generation), ylim=c(0,1), xlab="Generation", ylab="freq(w)", main=paste0("Medium: ", mm))
+        plot(NULL, xlim=range(data$Generation), ylim=c(0,1), xlab="Generation", ylab="freq(w)", main=paste0("Medium: ", medium.names[mm]))
         for (cc in levels(data$Cross))
             for (rr in levels(data$Replicate)) {
                 sel <- data$Medium == mm & data$Cross == cc & data$Replicate == rr
@@ -53,9 +54,9 @@ pdf(file.path(fig.dir, "compet-timeseries.pdf"),  width=8, height=6, pointsize=8
                 }
             }
         if (mm == levels(data$Medium)[1])
-            legend("bottomright", fill=col.cross, legend=names(col.cross))
-    }
+            legend("bottomright", fill=col.cross, legend=chartr("ab", "AB", names(col.cross)))
 dev.off()
+}
 
 
 num.params <- 2
